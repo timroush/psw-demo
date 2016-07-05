@@ -1,4 +1,7 @@
 <?php
+/*
+For global-scope functions and select objects like the DBH
+*/
 function debug($what){
     echo '<pre>';
     if(is_bool($what)){
@@ -23,7 +26,7 @@ function urlNode($index){
 
 function view($path){
     ob_start();
-    include($path);
+    include(VIEWS_PATH . DIRECTORY_SEPARATOR . $path);
     $ret = ob_get_contents();
     ob_end_clean();
     return $ret;
