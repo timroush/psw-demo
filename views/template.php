@@ -17,10 +17,15 @@ global $user;
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a>Hello, <?php echo $user->userName() ?></a></li>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
+                    <?php
+                    if($user->isLoggedIn()){ ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a>Hello, <?php echo $user->userName() ?></a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    <?php
+                    }
+                    ?>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
