@@ -23,6 +23,9 @@ if(!$user->isLoggedIn()){
 else{
 	//You're logged in, which node are you on?
     switch(urlNode(0)){
+        case 'ajax':
+            controller('ajax.php');
+            break;
         case 'logout':
             User::logout();
             $inner = view('login.php');

@@ -64,5 +64,22 @@ class RESTAURANTS{
         }
         return new RESTAURANT($results['id'], $results['name'], $results['suggestor']);
     }
+    
+    /**
+     * Gets a restaurant object based on the ID
+     * @id: the ID of the restaurant
+     * @return: Instance of RESTAURANT or False
+     */
+    public static function getRestaurantByID($id){
+        global $dbh;
+        $sql = "SELECT id, name, suggestor, modified FROM restaurants WHERE id=? limit 1";
+        $sth = $dbh->prepare($sql);
+        $sth->execute([$id]);
+        $results = $sth->fetch();
+        if(!$results){
+            return false;
+        }
+        return new RESTAURANT($results['id'], $results['name'], $results['suggestor']);
+    }
 }
 

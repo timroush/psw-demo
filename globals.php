@@ -20,7 +20,7 @@ function request($what){
 }
 
 function urlNode($index){
-    $chunks = explode('/', ltrim($_SERVER['REQUEST_URI'], '/'));
+    $chunks = explode('/', ltrim(str_replace('?'.$_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']), '/'));
     return isset($chunks[$index]) ? $chunks[$index] : '';
 }
 
@@ -29,6 +29,11 @@ function view($path){
     include(VIEWS_PATH . DIRECTORY_SEPARATOR . $path);
     $ret = ob_get_contents();
     ob_end_clean();
+    return $ret;
+}
+
+function controller($path){
+    include(CONTROLLERS_PATH . DIRECTORY_SEPARATOR . $path);
     return $ret;
 }
 

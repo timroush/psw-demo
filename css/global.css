@@ -2,6 +2,7 @@ body{
     width: 90%;
     margin: 10px auto;
 }
+.pointer{ cursor: pointer; }
 .user-home-nav{
     margin-bottom: 20px;
 }
@@ -27,4 +28,8 @@ body{
     }
     .rest-grid .rest-rating{
         display: block;
+    }
+    .rest-grid .thumbs-box .thumb{
+        font-size: 24px;
+        margin: 5px 15px;
     }

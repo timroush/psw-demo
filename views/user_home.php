@@ -20,6 +20,10 @@ else{
                 </span>
                 <span class="rest-suggestor">Suggested by: <?php echo $restaurant->suggestor() ?></span>
                 <span class="rest-rating"><?php echo $restaurant->rating() ?></span>
+                <div class="thumbs-box">
+                    <span class="thumb pointer thumb-bad glyphicon glyphicon-thumbs-down"></span>
+                    <span class="thumb pointer thumb-good glyphicon glyphicon-thumbs-up"></span>
+                </div>
             </div>
         </div>
         <?php
