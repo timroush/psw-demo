@@ -29,14 +29,16 @@ else{
         case 'logout':
             User::logout();
             $inner = view('login.php');
+            header('Location: '.BASE_URL);
+            exit();
             break;
         case 'restaurants':
-            debug($restaurant = RESTAURANTS::getRestaurantByURLSlug(urlNode(1)));
+            $restaurant = RESTAURANTS::getRestaurantByURLSlug(urlNode(1));
             if(!$restaurant){
             
             }
             else{
-            
+                $inner = view('restaurant_details.php');
             }
             break;
         case 'suggest':

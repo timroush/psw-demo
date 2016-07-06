@@ -1,4 +1,5 @@
 <?php
+global $user;
 echo view('user_home_nav.php');
 
 $restaurants = Restaurants::getAll();
@@ -21,8 +22,24 @@ else{
                 <span class="rest-suggestor">Suggested by: <?php echo $restaurant->suggestor() ?></span>
                 <span class="rest-rating"><?php echo $restaurant->rating() ?></span>
                 <div class="thumbs-box">
-                    <span class="thumb pointer thumb-bad glyphicon glyphicon-thumbs-down"></span>
-                    <span class="thumb pointer thumb-good glyphicon glyphicon-thumbs-up"></span>
+                <?php
+                    $vote = $user->getUserVoteForRestaurant($restaurant->id());
+                    if($vote === null){ ?>
+                            <span class="thumb pointer thumb-bad glyphicon glyphicon-thumbs-down" data-restid="<?php echo $restaurant->id() ?>" data-userid="<?php echo $user->userID() ?>"></span>
+                            <span class="thumb pointer thumb-good glyphicon glyphicon-thumbs-up" data-restid="<?php echo $restaurant->id() ?>" data-userid="<?php echo $user->userID() ?>"></span>
+                        <?php
+                    }
+                    else{
+                        if($vote){ ?>
+                            <span class="thumb bg-success thumb-good glyphicon glyphicon-thumbs-up" data-restid="<?php echo $restaurant->id() ?>" data-userid="<?php echo $user->userID() ?>"></span>
+                            <?php                        
+                        }
+                        else{ ?>
+                            <span class="thumb bg-danger thumb-bad glyphicon glyphicon-thumbs-down" data-restid="<?php echo $restaurant->id() ?>" data-userid="<?php echo $user->userID() ?>"></span>
+                            <?php
+                        }                    
+                    }
+                    ?>
                 </div>
             </div>
         </div>

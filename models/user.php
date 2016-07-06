@@ -32,6 +32,18 @@ class USER{
         return $this->userName !== false;
     }
     
+    public function getUserVoteForRestaurant($restID){
+        global $dbh;
+        $sql = "SELECT vote FROM votes WHERE user_id = ? and restaurant_id=?";
+        $sth = $dbh->prepare($sql);
+        $sth->execute([$this->userID, $restID]);
+        $vote = $sth->fetch();
+        if(!$vote){
+            return null;
+        }
+        return ($vote['vote'] == 1);
+    }
+    
     /**
      * Performs tasks for logging user in
      * @userName: name of user logging in

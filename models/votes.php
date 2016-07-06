@@ -19,7 +19,6 @@ class VOTES{
         if($hasvote){
             $sql = "UPDATE votes SET vote=? WHERE user_id = ? and restaurant_id=?";
             $sth = $dbh->prepare($sql);
-            debug([$vote, $userID, $restID]);
             $sth->execute([$vote, $userID, $restID]);
         }
         else{

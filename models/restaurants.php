@@ -43,7 +43,7 @@ class RESTAURANTS{
         $sth->execute();
         $results = $sth->fetchAll();
         foreach($results as $row){
-            $ret[] = new RESTAURANT($row['id'], $row['name'], $row['suggestor']);
+            $ret[] = new RESTAURANT($row['id'], $row['name'], $row['suggestor'], $row['modified']);
         }
         return $ret;
     }
@@ -62,7 +62,7 @@ class RESTAURANTS{
         if(!$results){
             return false;
         }
-        return new RESTAURANT($results['id'], $results['name'], $results['suggestor']);
+        return new RESTAURANT($results['id'], $results['name'], $results['suggestor'], $results['modified']);
     }
     
     /**
@@ -79,7 +79,30 @@ class RESTAURANTS{
         if(!$results){
             return false;
         }
-        return new RESTAURANT($results['id'], $results['name'], $results['suggestor']);
+        return new RESTAURANT($results['id'], $results['name'], $results['suggestor'], $results['modified']);
+    }
+    
+    public static function getVotesForRestaurant($id){
+        global $dbh;
+        $ret = ['up' => 0, 'down' => 0, 'total' => 0];
+        $sql = "SELECT vote, count(*) as total FROM votes WHERE restaurant_id = ? group by vote";
+        $sth = $dbh->prepare($sql);
+        $sth->execute([$id]);
+        $results = $sth->fetchAll();
+        if(!$results){
+            return $ret;
+        }
+        foreach($results as $row){
+            if($row['vote'] == '0'){
+                $ret['down'] = $row['total'];
+            }
+            else{
+                $ret['up'] = $row['total'];
+            }
+        }
+        $ret['total'] = $ret['up'] + $ret['down'];
+        return $ret;
+        
     }
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 switch(urlNode(1)){
     case 'restaurant-vote':
         $userID = (int) request('user-id');
@@ -10,8 +10,8 @@ switch(urlNode(1)){
             debug('insufficient data');
             exit;
         }
-        
         VOTES::saveVote($restaurantID, $userID, $vote);
+        echo json_encode(RESTAURANTS::getVotesForRestaurant($restaurantID));
         break;
 }
 
