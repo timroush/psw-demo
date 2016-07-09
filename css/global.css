@@ -6,6 +6,31 @@ body{
 .user-home-nav{
     margin-bottom: 20px;
 }
+#rest-vote-trend-graph-box{
+    margin-top: 15px;
+    width: 90%;
+    position: relative;
+    height: 400px;
+}
+#rest-vote-trend-graph-box-inner{
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 80%;
+    margin: 10px auto;
+    position: relative;
+    height: 380px;
+}
+    .rest-vote-bar{
+        background-color: #ccc;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        display: inline-block;
+        margin: 0px 5px;
+        position: absolute;
+        bottom: 0px;
+        min-height: 1px;
+        text-align: center;
+    }
 .rest-grid{
     display: inline-block;
     width: 15%;
@@ -14,6 +39,7 @@ body{
     border-radius: 5px;
     text-align: center;
     margin: 5px 15px;
+    vertical-align: top;
 }
     .rest-grid .thumbnail{
         display: block;
@@ -33,3 +59,41 @@ body{
         font-size: 24px;
         margin: 5px 15px;
     }
+.vote-history-entry{
+    height: 250px;
+    display: block;
+    width: 60%;
+    margin: 15px auto;
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 15px;
+}
+    .vote-history-entry .vote-details{
+        float: right;
+        width: 65%;
+    }
+    .vote-history-entry .rest-name{
+        font-size: 30px;
+        display: block;
+    }
+    .vote-history-entry .rest-picture{
+        float: left;
+        display: block;
+        height: 100%;
+        
+    }
+    .vote-history-entry .vote-date{
+        font-size: 12px;
+        display: block;
+    }
+    .vote-history-entry .vote-value{
+        font-size: 36px;
+        display: inline-block;
+        margin: 20px;
+    }
+.rest-vote-history-list{
+    font-size: 18px;
+}
+    
+    
+    

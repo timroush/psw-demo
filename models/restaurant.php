@@ -54,8 +54,8 @@ class RESTAURANT{
         return USER::getUserNameByID($this->suggestorID);
     }
     
-    public function url(){
-        return urlencode(str_replace("'", '', $this->name));
+    public static function url($name){
+        return urlencode(str_replace("'", '', $name));
     }
     
     public function getVotesBreakdown(){

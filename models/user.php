@@ -132,5 +132,33 @@ class USER{
         }
         return false;
     }
+
+    /**
+     * Pass in a name, get the ID of the user in the DB
+     * @name: ID of the user to look up
+     * @return: String name of user, False if none exists
+     */
+    public function getVotesForUser(){
+        global $dbh;
+        $sql = "SELECT 
+                    votes.date_added, 
+                    restaurants.name, 
+                    votes.vote 
+                FROM votes
+                INNER JOIN users 
+                    ON votes.user_id = users.id 
+                INNER JOIN restaurants 
+                    ON restaurants.id = votes.restaurant_id 
+                WHERE votes.user_id = ?
+                ORDER BY votes.date_added desc";
+        $sth = $dbh->prepare($sql);
+        $sth->execute([$this->userID]);
+        $rows = $sth->fetchAll();
+        $ret = [];
+        foreach($rows as $row){
+            $ret[] = ['date' => date('m/d/Y g:i A', strtotime($row['date_added'])), 'restaurant' => $row['name'], 'vote' => (bool) $row['vote']];
+        }
+        return $ret;
+    }
     
 }

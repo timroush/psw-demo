@@ -48,6 +48,10 @@ else{
             }
             $inner = view('suggest.php');
             break;
+        case 'ratings-history':
+            $votes = $user->getVotesForUser();
+            $inner = view('user_history.php');
+            break;
         default:
             $inner = view('user_home.php');
             break;

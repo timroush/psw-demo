@@ -10,12 +10,12 @@ if(empty($restaurants)){ ?>
 else{
     foreach($restaurants as $restaurant){ ?>
         <div class="rest-grid">
-            <a href="/restaurants/<?php echo $restaurant->url() ?>">
+            <a href="/restaurants/<?php echo RESTAURANT::url($restaurant->name()) ?>">
                 <img class="thumbnail" src="/images/rest-thumb.jpg" />
             </a>
             <div class="rest-label">
                 <span class="rest-name">
-                    <a href="/restaurants/<?php echo $restaurant->url() ?>">
+                    <a href="/restaurants/<?php echo RESTAURANT::url($restaurant->name()) ?>">
                         <?php echo $restaurant->name() ?>
                     </a>
                 </span>
