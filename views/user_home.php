@@ -11,7 +11,7 @@ else{
     foreach($restaurants as $restaurant){ ?>
         <div class="rest-grid">
             <a href="<?php echo BASE_URL ?>/restaurants/<?php echo RESTAURANT::url($restaurant->name()) ?>">
-                <img class="thumbnail" src="/images/rest-thumb.jpg" />
+                <img class="thumbnail" src="<?php echo BASE_URL ?>/images/rest-thumb.jpg" />
             </a>
             <div class="rest-label">
                 <span class="rest-name">

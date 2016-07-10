@@ -3,7 +3,7 @@ global $restaurant;
 $votes = $restaurant->getVotesBreakdown();
 ?>
 <div class="pull-left col-md-6">
-    <img src="/images/rest.jpg" />
+    <img src="<?php echo BASE_URL ?>/images/rest.jpg" />
     <?php
     $score = 0;
     $votesCounted = 0;
