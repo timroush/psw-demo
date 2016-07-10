@@ -15,7 +15,7 @@ $(function(){
         userid = $(this).attr('data-userid');
         var ratingsBox = $(this).parent().siblings('.rest-rating');
         $.ajax({
-            url: '/ajax/restaurant-vote',
+            url: '/psw-demo/ajax/restaurant-vote',
             data: {
                 'restaurant-id': restid, 
                 'user-id': userid,

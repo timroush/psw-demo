@@ -11,7 +11,7 @@ else{
     foreach($votes as $vote){ ?>
         <div class="vote-history-entry">
             <a href="<?php echo BASE_URL ?>/restaurants/<?php echo RESTAURANT::url($vote['restaurant']) ?>">
-                <img src="/images/rest.jpg" class="rest-picture" />
+                <img src="<?php echo BASE_URL ?>/images/rest.jpg" class="rest-picture" />
                 <div class="vote-details">
                     <span class="rest-name"><strong><?php echo $vote['restaurant'] ?></strong></span>
                     <span class="vote-date">Voted on <?php echo $vote['date'] ?></span>
