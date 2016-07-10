@@ -4,18 +4,18 @@ echo view('user_home_nav.php');
 
 $restaurants = Restaurants::getAll();
 if(empty($restaurants)){ ?>
-    <div class="alert alert-info" role="alert">No Restaurants Suggested. <a href="/suggest">Got any ideas?</a></div>
+    <div class="alert alert-info" role="alert">No Restaurants Suggested. <a href="<?php echo BASE_URL ?>/suggest">Got any ideas?</a></div>
     <?php
 }
 else{
     foreach($restaurants as $restaurant){ ?>
         <div class="rest-grid">
-            <a href="/restaurants/<?php echo RESTAURANT::url($restaurant->name()) ?>">
+            <a href="<?php echo BASE_URL ?>/restaurants/<?php echo RESTAURANT::url($restaurant->name()) ?>">
                 <img class="thumbnail" src="/images/rest-thumb.jpg" />
             </a>
             <div class="rest-label">
                 <span class="rest-name">
-                    <a href="/restaurants/<?php echo RESTAURANT::url($restaurant->name()) ?>">
+                    <a href="<?php echo BASE_URL ?>/restaurants/<?php echo RESTAURANT::url($restaurant->name()) ?>">
                         <?php echo $restaurant->name() ?>
                     </a>
                 </span>
