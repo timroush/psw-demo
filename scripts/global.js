@@ -64,7 +64,7 @@ $(function(){
     });
     
     $("#add-a-comment-form").submit(function(){
-        var comment = $("#new-comment-text").val();
+        var comment = $("#new-comment-text").val().trim();
         restid = $(this).attr('data-restid');
         userid = $(this).attr('data-userid');
         if(comment == ''){
