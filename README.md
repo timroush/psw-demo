@@ -10,7 +10,11 @@ With this demo you can
 * Add a new restaurant
 * See your voting history
 * See the voting history and trend for any given restaurant
+* Comment on restaurants
 
 TODOs
 * Unit testing for functions
 * Selenium tests for front end
+* Extra user input validation
+* Minify resource files
+* Catch restaurant not found page
