@@ -11,10 +11,11 @@ With this demo you can
 * See your voting history
 * See the voting history and trend for any given restaurant
 * Comment on restaurants
+* See each restaurant on the map
 
 TODOs
 * Unit testing for functions
-* Selenium tests for front end
-* Extra user input validation
-* Minify resource files
-* Catch restaurant not found page
+* More Selenium tests for front end
+* Structure code base for long-term scalability
+* Login passwords
+* Address-specific locations of restaurants
