@@ -4,8 +4,6 @@ require_once('globals.php');
 
 //User is global scope, since it's needed site-wide
 $user = new User();
-//Output represents all the HTML to the screen. Start by loading the outer template
-$output = view('template.php');
 //Inner represents the inner content of the page, aside from the main template
 $inner = '';
 
@@ -58,6 +56,8 @@ else{
     }
 }
 
+//Output represents all the HTML to the screen. Start by loading the outer template
+$output = view('template.php');
 //Replace template placeholders with actual content
 $output = str_replace('{%BODY%}', $inner, $output);
 
