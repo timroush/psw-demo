@@ -35,6 +35,12 @@ $votes = $restaurant->getVotesBreakdown();
 <div class="pull-right col-md-6">
     <h1><?php echo $restaurant->name() ?></h1>
     <h4>Added <?php echo date('m/d/Y', strtotime($restaurant->modified())) ?> by <?php echo $restaurant->suggestor() ?></h4>
+    <iframe
+      width="600"
+      height="250"
+      frameborder="0" style="border:0; margin: 25px 0px"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBBWt07qo3fiL09SP_V8Y6UXItJu5c4B1g&q=<?php echo urlencode($restaurant->address()) ?>" allowfullscreen>
+    </iframe>
     <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $restaurant->ratingScore() ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $restaurant->ratingScore() ?>%;min-width:20px">
             <?php echo $restaurant->ratingScore() ?>% Rating

@@ -9,16 +9,16 @@ class RESTAURANTS{
 	 * If it already exists, a message will be returned
 	 * @return: Boolean True if a record was added, String if there was an error
 	 */
-    public static function add($name){
+    public static function add($name, $address){
         global $dbh, $user;
         $sql = "SELECT id FROM restaurants WHERE name = ?";
         $sth = $dbh->prepare($sql);
         $sth->execute([$name]);
         $id = $sth->fetch();
         if(!$id){
-            $sql = "INSERT INTO restaurants(name, suggestor) values(?, ?)";
+            $sql = "INSERT INTO restaurants(name, suggestor, address) values(?, ?, ?)";
             $sth = $dbh->prepare($sql);
-            $sth->execute([$name, $user->userID()]);
+            $sth->execute([$name, $user->userID(), $address]);
             if($dbh->lastInsertId()){
                 return true;
             }
@@ -38,12 +38,12 @@ class RESTAURANTS{
     public static function getAll(){
         global $dbh;
         $ret = [];
-        $sql = 'SELECT id, name, suggestor, modified FROM restaurants';
+        $sql = 'SELECT id, name, suggestor, modified, address FROM restaurants';
         $sth = $dbh->prepare($sql);
         $sth->execute();
         $results = $sth->fetchAll();
         foreach($results as $row){
-            $ret[] = new RESTAURANT($row['id'], $row['name'], $row['suggestor'], $row['modified']);
+            $ret[] = new RESTAURANT($row['id'], $row['name'], $row['suggestor'], $row['modified'], $row['address']);
         }
         return $ret;
     }
@@ -55,14 +55,14 @@ class RESTAURANTS{
      */
     public static function getRestaurantByURLSlug($slug){
         global $dbh;
-        $sql = "SELECT id, name, suggestor, modified FROM restaurants WHERE REPLACE(name, '''', '') = ? limit 1";
+        $sql = "SELECT id, name, suggestor, modified, address FROM restaurants WHERE REPLACE(name, '''', '') = ? limit 1";
         $sth = $dbh->prepare($sql);
         $sth->execute([urldecode($slug)]);
         $results = $sth->fetch();
         if(!$results){
             return false;
         }
-        return new RESTAURANT($results['id'], $results['name'], $results['suggestor'], $results['modified']);
+        return new RESTAURANT($results['id'], $results['name'], $results['suggestor'], $results['modified'], $results['address']);
     }
     
     /**
@@ -72,16 +72,20 @@ class RESTAURANTS{
      */
     public static function getRestaurantByID($id){
         global $dbh;
-        $sql = "SELECT id, name, suggestor, modified FROM restaurants WHERE id=? limit 1";
+        $sql = "SELECT id, name, suggestor, modified, address FROM restaurants WHERE id=? limit 1";
         $sth = $dbh->prepare($sql);
         $sth->execute([$id]);
         $results = $sth->fetch();
         if(!$results){
             return false;
         }
-        return new RESTAURANT($results['id'], $results['name'], $results['suggestor'], $results['modified']);
+        return new RESTAURANT($results['id'], $results['name'], $results['suggestor'], $results['modified'], $results['address']);
     }
     
+    /**
+     * Look up all votes for a restaurant based on ID
+     * @return: Array of arrays with values of how many up votes, down votes and total votes there are
+     */
     public static function getVotesForRestaurant($id){
         global $dbh;
         $ret = ['up' => 0, 'down' => 0, 'total' => 0];

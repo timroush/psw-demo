@@ -14,9 +14,12 @@ if(isset($added) && ($added !== null)){
     }
 }
 ?>
-<form method="POST">
-  <div class="form-group">
-    <input type="text" class="form-control" name="name" placeholder="What's the name of the restaurant?">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+<form method="POST" id="restaurantSuggestForm">
+    <div class="form-group">
+        <input id="restaurantSuggestName" type="text" class="form-control" name="name" placeholder="What's the name of the restaurant?">
+    </div>
+    <div class="form-group">
+        <input id="restaurantSuggestAddr" type="text" class="form-control" name="address" placeholder="Restaurant Address">
+    </div>
+<button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -43,8 +43,8 @@ else{
             break;
         case 'suggest':
             $added = null;
-            if(request('name')){
-                $added = RESTAURANTS::add(request('name'));
+            if(request('name') && request('address')){
+                $added = RESTAURANTS::add(request('name'), request('address'));
             }
             $inner = view('suggest.php');
             break;

@@ -2,6 +2,12 @@
 
 class VOTES{
     
+    /**
+     * For a given restaurant ID and user ID, write a vote to the DB
+     * @restID: INT ID value for the restaurant to vote for
+     * @userID: INT ID of user doing the voting
+     * @vote: [0|1] value representing vote
+     */
     public static function saveVote($restID, $userID, $vote){
         global $dbh;
         if(!in_array($vote, ['0', '1']) || !is_int($restID) || !is_int($userID)){

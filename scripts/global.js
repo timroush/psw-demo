@@ -29,4 +29,26 @@ $(function(){
             }
         });
     });
+    
+    $("#restaurantSuggestForm").submit(function(){
+        if($("#restaurantSuggestName").val() == ''){
+            alert('Please enter a name');
+            $("#restaurantSuggestName").focus();
+            $("#restaurantSuggestName").closest('.form-group').addClass('has-error');
+            return false;
+        }
+        else{
+            $("#restaurantSuggestName").closest('.form-group').removeClass('has-error');
+        }
+        if($("#restaurantSuggestAddr").val() == ''){
+            alert('Please enter an address');
+            $("#restaurantSuggestAddr").focus();
+            $("#restaurantSuggestAddr").closest('.form-group').addClass('has-error');
+            return false;
+        }
+        else{
+            $("#restaurantSuggestAddr").closest('.form-group').removeClass('has-error');
+        }
+        return true;
+    });
 });
