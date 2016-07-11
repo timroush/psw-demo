@@ -1,4 +1,13 @@
 $(function(){
+    $("#login-form").submit(function(){
+        if($("#username").val().trim() == ''){
+            alert('Please enter a value');
+            $("#username").val('');
+            $("#username").focus();
+            return false;
+        }
+    });
+    
     $(".thumbs-box .thumb").click(function(){
         var restid, custid, vote = 0;
         if($(this).hasClass('thumb-bad')){
@@ -31,8 +40,9 @@ $(function(){
     });
     
     $("#restaurantSuggestForm").submit(function(){
-        if($("#restaurantSuggestName").val() == ''){
+        if($("#restaurantSuggestName").val().trim() == ''){
             alert('Please enter a name');
+            $("#restaurantSuggestName").val('');
             $("#restaurantSuggestName").focus();
             $("#restaurantSuggestName").closest('.form-group').addClass('has-error');
             return false;
@@ -40,8 +50,9 @@ $(function(){
         else{
             $("#restaurantSuggestName").closest('.form-group').removeClass('has-error');
         }
-        if($("#restaurantSuggestAddr").val() == ''){
+        if($("#restaurantSuggestAddr").val().trim() == ''){
             alert('Please enter an address');
+            $("#restaurantSuggestAddr").val('');
             $("#restaurantSuggestAddr").focus();
             $("#restaurantSuggestAddr").closest('.form-group').addClass('has-error');
             return false;

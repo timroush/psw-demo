@@ -10,7 +10,7 @@ $inner = '';
 //If you're not logged in, you'll only get the login screen
 if(!$user->isLoggedIn()){
 	//Note that there's no validation here
-    if(request('username')){
+    if(trim(request('username'))){
         $user->login(request('username'));
         $inner = view('user_home.php');
     }
@@ -34,7 +34,7 @@ else{
         case 'restaurants':
             $restaurant = RESTAURANTS::getRestaurantByURLSlug(urlNode(1));
             if(!$restaurant){
-            
+                $inner = view('restaurant_404.php');
             }
             else{
                 $inner = view('restaurant_details.php');
