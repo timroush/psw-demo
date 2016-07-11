@@ -51,4 +51,39 @@ $(function(){
         }
         return true;
     });
+    
+    $("#add-a-comment-form").submit(function(){
+        var comment = $("#new-comment-text").val();
+        restid = $(this).attr('data-restid');
+        userid = $(this).attr('data-userid');
+        if(comment == ''){
+            return;
+        }
+        $.ajax({
+            url: '/psw-demo/ajax/restaurant-comment',
+            data: {
+                'restaurant-id': restid, 
+                'user-id': userid,
+                'comment': comment
+            },
+            method: "POST",
+            success: function(data, status, xhr){
+                $("#current-comments").prepend('<div class="comment"><span class="comment-date">'+data['date'] + '</span><span class="comment-user">'+data['user']+' said:</span><p class="comment-text"> ' + data['comment'] + '</p></div>');
+            }
+        });
+        return false;
+    });
+    
+    $("#togglecomments").click(function(){
+        var icon = $(this).children('.glyphicon');
+        if(icon.hasClass('glyphicon-minus')){
+            icon.removeClass('glyphicon-minus');
+            icon.addClass('glyphicon-plus');
+        }
+        else if(icon.hasClass('glyphicon-plus')){
+            icon.removeClass('glyphicon-plus');
+            icon.addClass('glyphicon-minus');
+        }
+        $("#current-comments").slideToggle();
+    });
 });

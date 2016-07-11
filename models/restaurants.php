@@ -106,7 +106,13 @@ class RESTAURANTS{
         }
         $ret['total'] = $ret['up'] + $ret['down'];
         return $ret;
-        
+    }
+    
+    public static function addComment($restID, $userID, $comment){
+        global $dbh;
+        $sql = "INSERT INTO comments(user_id, restaurant_id, comment) values (?,?,?)";
+        $sth = $dbh->prepare($sql);
+        $sth->execute([$userID, $restID, $comment]);
     }
 }
 

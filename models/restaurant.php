@@ -96,5 +96,18 @@ class RESTAURANT{
         $sth->execute([$this->id]);
         return $sth->fetchAll();        
     }
+    
+    public function loadComments(){
+        global $dbh;
+        $sql = "SELECT comments.*, users.name 
+                FROM comments 
+                INNER JOIN users
+                    ON comments.user_id = users.id
+                WHERE comments.restaurant_id = ? 
+                ORDER BY comments.date desc";
+        $sth = $dbh->prepare($sql);
+        $sth->execute([$this->id]);
+        return $sth->fetchAll();
+    }
 }
 

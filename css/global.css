@@ -94,6 +94,24 @@ body{
 .rest-vote-history-list{
     font-size: 18px;
 }
-    
-    
-    
+.comment{
+    background-color: #eee;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 0px;
+}
+.comment-user{
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+.comment-date{
+    font-size: 10px;
+    color: #666;
+    font-weight: bold;
+    display: block;
+}
+.comment-text{
+    margin-top: 10px;
+}

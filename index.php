@@ -22,6 +22,7 @@ else{
 	//You're logged in, which node are you on?
     switch(urlNode(0)){
         case 'ajax':
+            //Ajax controller exits flow
             controller('ajax.php');
             break;
         case 'logout':

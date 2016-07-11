@@ -1,5 +1,5 @@
 <?php
-global $restaurant;
+global $restaurant, $user;
 $votes = $restaurant->getVotesBreakdown();
 ?>
 <div class="pull-left col-md-6">
@@ -46,8 +46,33 @@ $votes = $restaurant->getVotesBreakdown();
             <?php echo $restaurant->ratingScore() ?>% Rating
         </div>
     </div>
+    <hr/>
+    <div id="restaurant-comments">
+        <h4 class="pointer" id="togglecomments"><span class="glyphicon glyphicon-minus"></span> Comments</h4>        
+        <div id="add-a-comment">
+            <form id="add-a-comment-form" data-restid="<?php echo $restaurant->id() ?>" data-userid="<?php echo $user->userID() ?>">
+                <textarea id="new-comment-text" class="form-control" rows="3"  placeholder="Add a Comment"></textarea>
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+            </form>
+        </div>
+        <div id="current-comments">
+            <?php
+            $comments = $restaurant->loadComments();
+            foreach($comments as $comment){
+                ?>
+                <div class="comment">
+                    <span class="comment-date"><?php echo date('m/d/Y g:i:s A', strtotime($comment['date'])) ?></span>
+                    <span class="comment-user"><?php echo $comment['name'] ?> said:</span>
+                    <p class="comment-text"><?php echo $comment['comment'] ?></p>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
     <?php
     if($votes){ ?>
+        <hr/>
         <ul class="list-group rest-vote-history-list">
         <?php
         foreach($votes as $vote){ ?>
